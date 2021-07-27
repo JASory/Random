@@ -4,7 +4,7 @@
 
 */
 
-// Ensure that a >=  b and b != 0   Fastest evaluation in only 4 arithmetic steps, maximum error of 6.9% around eccentricity of 0.28
+// Ensure that a >=  b and a !=0   Fastest evaluation in only 4 arithmetic steps, maximum error of 6.9% around eccentricity of 0.28
  fn linear_ellipse(a : f64, b : f64)-> f64{
     a*((b/a*2.283185307179586)+4.0)
  }
