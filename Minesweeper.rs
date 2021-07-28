@@ -3,7 +3,7 @@
   //Maximum dimensions of grid are  x & y= 2^32. Works by only allocating the positions of existing numbers, instead imagining that the numbers are on a grid
   struct Grid{                               //like this    {1 ,2 ,3 ,4 ,5 ,
                                              //              6 ,7 ,8 ,9 ,10, 
-  }                                          //              11,12,13,14,15 } 
+                                             //              11,12,13,14,15 } 
                                              // If we have a objects of interest at the positions of 4,7, and 13, 
    x : usize,   //x-dimension                // then we simply push 4,7,13 to a vector and ignore the rest as they have one property, non-existence
    y : usize,   //y-dimension                // Likewise the objects of interest have a property of existence and a position. making integers sufficient 
@@ -98,8 +98,9 @@ impl Minesweeper for Grid{
          stop = self.plane.len()
      }
     }
-     //interval to search through, this is the optimization permitted by sorting, instead of having to search through the whole vector we only need to search an interval
-     //of length 2(x+1), resulting in approximately y/2 reduction in the number of elements to check, assuming that the positions are evenly distributed. 
+     //interval to search through, this is the optimization permitted by sorting, instead of having to search through the whole vector we only need to search 
+     //an interval of length 2(x+1), resulting in approximately y/2 reduction in the number of elements to check, assuming that the positions are evenly
+     //distributed.
     let plane_interval = &self.plane[start..stop]; 
       let mut count = 0usize;
       
