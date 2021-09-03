@@ -89,7 +89,7 @@ fn mul_sub_mod(x: u64, y: u64,z: u64,  n: u64)->u64{
  
  fn miller_rabin(p: u64)->bool{// probabilistic miller rabin (1/4)^5 , skips 2 and 3
     for _ in 0..5{
-     if strong_fermat(p,2 + rand()%(p-4)) == false{    // there is no rand function here, write your own or copy from the Random.rs file is this repository
+     if strong_fermat(p,2 + rand()%(p-4)) == false{    // there is no rand function here, write your own or copy from the RNG.rs file is this repository
       return false
      }
     }
