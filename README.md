@@ -1,6 +1,6 @@
 # Random
 Repository of Random, Useful, or Novel Functions
-
+- Elementary Cellular Automata and Game of Life, implemented using efficient Bitvector
 - Ellipse Perimeter formulas
 - Games - Monty Hall, and Fares Problem simulation
 - Minesweeper - Novel approach to the minesweeper game, highly applicable to other grid-based problems
