@@ -1,3 +1,36 @@
+#[derive(Clone, Copy,Debug, PartialEq)]
+pub enum Sign{
+   Positive,
+   Negative,
+}
+
+ impl Sign {
+   
+  pub fn neg(&self)->Self{
+      match self {
+      Sign::Positive =>  Sign::Negative,
+      Sign::Negative =>  Sign::Positive, 
+      }
+   }
+   
+ pub fn mul(&mut self, other: &Self)->Self{
+       match (&self, other) {
+         (&Sign::Positive, &Sign::Negative)=>  Sign::Negative,
+         (&Sign::Negative, &Sign::Positive)=>  Sign::Negative,
+                                         _=>   Sign::Positive,
+       }
+   }
+ pub fn pow(&self, pow: &u64)-> Sign{
+        if self == &Sign::Negative && pow%2 ==1{
+           return Sign::Negative
+        }
+        else{
+            Sign::Positive
+        }
+      }  
+ }
+ 
+ 
 
 const RADIX : u128 = 0x8AC7230489E80000 ;
     
@@ -7,11 +40,19 @@ fn carry_add(carry: u64, x: u64, y : u64,  output: &mut u64)->u64{
     return (interim / RADIX ) as u64
 }
 
-/*
+  // x-y 
 fn subborrow(carry: u64, x: u64, y: u64, output: &mut u64)->u64{
-
+        let subtrahend = y + carry;
+     if  subtrahend > x {
+          *output = RADIX as u64 -(subtrahend - x);
+          1u64
+     }
+     else{
+       *output = x -y;
+       0u64
+     }
 }
-*/
+
 
 fn carry_mul(carry: u64, x: u64, y: u64, output: &mut u64)->u64{
      let interim =  x as u128 * y as u128 + carry as u128;
@@ -57,6 +98,31 @@ fn unequal_add(x: &mut [u64],y: &[u64])->u64{  //first number must be larger
      unequal_add(hi,y)
  }
  
+ 
+ fn unequal_sub(x: &mut [u64],y: &[u64])->u64{  //first number must be larger
+
+ let mut carry = 0u64;
+ 
+ let (lo,hi) = x.split_at_mut(y.len()); //split to make equal
+    
+ for (i,j) in lo.iter_mut().zip(y.iter()){                               //add equal 
+        carry = subborrow(carry,*i,*j,i)
+       }
+      
+      if carry > 0u64{
+       
+       for k in hi.iter_mut(){   //add the carry until there is no carry
+       carry = subborrow(carry,*k,0u64,k);
+       if carry == 0u64{
+       break;
+       }
+       }
+      
+      }
+   carry
+
+}
+ 
  fn  scalar_slice(x: &mut [u64], scale : u64)->u64{
       
    let mut carry = 0u64;
@@ -80,6 +146,7 @@ fn unequal_add(x: &mut [u64],y: &[u64])->u64{  //first number must be larger
 
 #[derive(Clone)]
 struct Mpz{
+   sign  : Sign,
    digits: Vec<u64>,
 }
 
@@ -92,17 +159,61 @@ fn string_format(x: u64)->String{
 
 impl Mpz{
 
- fn new(digits: Vec<u64>)->Self{// New 
-         Mpz{digits}
+ fn new(sign: Sign , digits: Vec<u64>)->Self{// New 
+         Mpz{sign, digits}
      }
      
  fn len(&self)->usize{
      self.digits.len()
  }     
  
+  fn less_than(&self,other: &Mpz)-> bool{
+    if self.len() > other.len(){
+       return false
+    }
+   for (x,y) in self.digits.iter().rev().zip(other.digits.iter().rev()){
+      if x > y{
+        return false
+      }
+   } 
+  return true
+ }
+ 
+ 
  fn format(&self)->String{
-     let interim = self.digits[..self.len()-2].iter().rev().map(|x| string_format(*x)).collect::<Vec<String>>();
+     let interim = self.digits[..self.len()-1].iter().rev().map(|x| string_format(*x)).collect::<Vec<String>>();
+     println!("{:?}",interim);
      self.digits[self.len()-1].to_string() + &interim.join("")
+ }
+ 
+ 
+ 
+ fn add_assign(&mut self, mut other: Self){
+ 
+      let mut carry = 0u64;
+ 
+     if self.sign == other.sign {
+        if &self.len() < &other.len(){
+ 
+            self.digits.extend_from_slice(&other.digits[self.len()..])
+        }
+     carry = unequal_add(&mut self.digits[..],&other.digits[..]);
+     }
+     
+    else{
+       if self.less_than(&other){
+             carry = unequal_sub(&mut other.digits[..],&self.digits[..]);
+             *self = other;
+        }
+       else {
+             carry = unequal_sub(&mut self.digits[..],&other.digits[..]);
+        }
+    }
+    
+     if carry == 1u64{
+          self.digits.push(1u64)
+     }
+   
  }
 
  fn shift_add(&mut self, mut other: &Self, shift: usize){
@@ -149,7 +260,7 @@ impl Mpz{
   
   pub  fn k_factorial(x: u64, y:u64)-> Mpz{
   
- let mut z= Mpz{digits: vec![1]};
+ let mut z= Mpz::new(Sign::Positive, vec![1]);
  
      for i in 1..x+1{
          if i%y == x%y{
@@ -161,7 +272,7 @@ impl Mpz{
    
  
    fn multiply(&mut self,other: &Mpz)->Mpz{
-         let mut y= Mpz::new(vec![]);
+         let mut y= Mpz::new(self.sign.mul(&other.sign), vec![]);
          let mut offset = 0usize;
         
           for i in other.digits.iter(){
@@ -171,5 +282,28 @@ impl Mpz{
          }
           y
      }
+     
+     pub  fn pow(&self, mut y:u64)->Mpz{
+         let mut z= Mpz::new(self.sign.pow(&y),vec![1]);
+         let mut x_mpz = self.clone();
+          if y == 0{
+              return z
+          }
+         while y > 1{
+    
+           if y%2 ==0 {
+              x_mpz = x_mpz.multiply(&x_mpz.clone());
+              y>>=1;
+           }
+           else{
+              z = x_mpz.multiply(&z);
+          x_mpz = x_mpz.multiply(&x_mpz.clone());
+              y = (y-1)>>1;
+           }
+        }
+      return x_mpz.multiply(&z)
+     }
+     
+   // fn sqrt 
 
 }
