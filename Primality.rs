@@ -95,6 +95,19 @@ fn mul_sub_mod(x: u64, y: u64,z: u64,  n: u64)->u64{
     }
     return true
  }
+
+ fn det_miller_rabin(p: u64)->bool{//deterministic miller rabin in the interval [0;2^64]
+       const BASE : [u64;12] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37];
+       for i in BASE{
+         if p == i{
+           return true
+         }
+         if strong_fermat(p,i)==false{
+          return false
+         }
+       }
+       return true
+   }
  
  
  fn lucas_lehmer(p: u8)-> bool{// Mersenne primality test
