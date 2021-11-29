@@ -76,3 +76,39 @@ fn count_collatz(mut x: u64)->u32{
     }
     return count
 }
+
+fn lucas_v(p: i64, q: i64, step: usize)->i64{
+     let mut x0 = 2i64;
+     let mut x1 = p;
+     if step == 0{
+         return 2i64
+     }
+     if step == 1{
+         return p
+     }
+     let mut x2 = p;
+    for i in 2..step+1{
+        x2 = p*x1 - q*x0;
+        x0=x1;
+        x1=x2;
+    }
+    x1
+}
+
+fn lucas_u(p: i64, q: i64, step: usize)->i64{
+     let mut x0 = 0i64;
+     let mut x1 = 1i64;
+     if step == 0{
+         return 0i64
+     }
+     if step == 1{
+         return 1i64
+     }
+     let mut x2 = 1i64;
+    for i in 2..step+1{
+        x2 = p*x1 - q*x0;
+        x0=x1;
+        x1=x2;
+    }
+    x1
+}
