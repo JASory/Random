@@ -112,3 +112,9 @@ fn lucas_u(p: i64, q: i64, step: usize)->i64{
     }
     x1
 }
+ // Cantor's enumeration function of the rationals returns the k-th rational number
+fn cantor(k: i64)->(i64,i64){
+    let x = ((-1f64 + (1.0 + 8.0 * k as f64).sqrt())/2.0).ceil() as i64;
+    let y = ((-(x*x) + x)/2) +k;
+    ( x-y +1, y )
+}
