@@ -8,8 +8,8 @@ Repository of Random, Useful, or Novel Functions
 - RNG Affine generator produces poor entropy, RDRAND call function 
 - Primality - Some efficient primality tests, including trial division, Miller-Rabin and Lucas-Lehmer
 - Sqrt - Symbolic computation of integer sqrt
-
+<!---
 Top-Level visits
 ![visitor badge](https://visitor-badge.glitch.me/badge?page_id=JASory-Random.visitor-badge)
-
+---> 
 
