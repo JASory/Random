@@ -9,8 +9,8 @@ Repository of Random, Useful, or Novel Functions
 - Mpz10 - Highly naive Arbitrary-precision arithmetic using Radix-10^19
 - RNG Affine generator produces poor entropy, RDRAND call function 
 - Primality - Some efficient primality tests, including trial division, Miller-Rabin and Lucas-Lehmer
-- Sqrt - Symbolic computation of integer sqrt
 - SIRP - [Sequential Interval Residue Product](https://rust-cas.org/fun/misc/sirp.html)
+- Sqrt - Symbolic computation of integer sqrt
 <!---
 Top-Level visits
 ![visitor badge](https://visitor-badge.glitch.me/badge?page_id=JASory-Random.visitor-badge)
