@@ -1429,16 +1429,3 @@ fn is_prime(x: u64)->bool {
     let b = BASES[(h & 16383) as usize];
     return sprp(x,(b&4095) as u64) && sprp(x,(b>>12) as u64);
 }
-
-fn main(){
-   let mut count = 0u64;
-   let mut time = std::time::Instant::now();
-   for i in 0..100_000_000{
-     if is_prime(i){
-      count+=1;
-     }
-   }
-   let stop = time.elapsed();
-   println!("{} {:?}",count,stop)
-}
-
