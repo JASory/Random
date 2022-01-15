@@ -5,15 +5,11 @@ fn pi_interval(lower: u64, upper: u64) -> u64{
 
   let mut count = 0u64;
     
-    //let start = std::time::Instant::now();
-    
     for i in lower..upper{
      if i.is_prime(){
       count+=1;
      }
     }
-    //let stop = start.elapsed();
-    //println!("{} primes counted in t : {:?}",count,stop);
     count
 }
 
