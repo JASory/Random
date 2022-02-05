@@ -11,7 +11,7 @@
    However this is actually less efficient in practice, although still faster than Forisek-Jancina table. 
    
    Computes all primes in the interval 0;2^32 in approximately 720s on i3-4005u. In contrast ENT's primality takes 565s and Forisek-Jancina's original 
-   implementation takes 810s
+   implementation takes 1218s
 
 */
 
