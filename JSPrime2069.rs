@@ -7,7 +7,7 @@
    is likely the fastest original algorithm. 
    
    It roughly works by dividing x by the first 30 primes then performing a strong fermat test base-2 and finally checking if the number
-   is one of the pseudoprimes.One can perform a simple fermat test base 320437 to reduce the pseudoprime table to 183 elements. 
+   is one of the pseudoprimes.One can perform an additional strong fermat test base 3159323 to reduce the pseudoprime table to 44 elements. 
    However this is actually less efficient in practice, although still faster than Forisek-Jancina table. 
    
    Computes all primes in the interval 0;2^32 in approximately 720s on i3-4005u. In contrast ENT's primality takes 565s and Forisek-Jancina's original 
