@@ -1,0 +1,39 @@
+/*
+    Sample file for particle data in RUSTBCA C++-style comments would be absent and are solely for demonstration
+*/
+
+ option   // reads option and consequently attempts to assign all values until double newline to the option struct
+name = "boron_dust_grain_"  // matches against field names if no field name matches the right-hand side one can panic or warn while substituting a default
+track_trajectories = true
+track_recoils = true
+track_recoil_trajectories = true
+write_buffer_size = 8000
+weak_collision_order = 0
+suppress_deep_recoils = false
+high_energy_free_flight_paths = false
+num_threads = 4
+num_chunks = 10
+use_hdf5 = false
+electronic_stopping_mode = "LOW_ENERGY_NONLOCAL"    // quotation marks here are unneccessary as the assignment operator {=} is the differentiating point
+mean_free_path_model = "LIQUID"
+interaction_potential = [["KR_C"]]
+scattering_integral = [["MENDENHALL_WELLER"]]      // Same as above
+root_finder = [[{"NEWTON"={max_iterations=100, tolerance=1E-3}}]]  // restructure this as Newton, iterations, tolerance or even more simply split the lines 
+track_displacements = false
+track_energy_losses = false
+ 
+                  // double newline so we try to fill the next struct by the name of material parameters
+ material_parameters
+energy_unit = "EV"
+mass_unit = "AMU"
+Eb = [ 0.0, 0.0,]      // either split as Eb1,Eb2 (simpler parsing) or parse for arrays 
+Es = [ 5.76, 0.0,]
+Ec = [ 0.5, 0.5,]
+Z = [ 5, 7,]
+m = [ 10.811, 14,]
+interaction_index = [0, 0]
+surface_binding_model = {"PLANAR"={calculation="TARGET"}}
+bulk_binding_model = "AVERAGE"     
+
+
+                  
