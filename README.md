@@ -1,5 +1,6 @@
 # Random
 Repository of Random, Useful, or Novel Functions
+- Dual - Implementation of Dual numbers with an example of automatic differentiation
 - Elementary Cellular Automata and Game of Life, implemented using efficient Bitvector
 - Ellipse Perimeter formulas
 - FJPrime32 - Hashtable lookup implementation of deterministic primality test in 0-2^32-1 interval
