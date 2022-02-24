@@ -102,3 +102,16 @@
  }
 */
  }
+// Input : coefficient vector in reverse degree order. i.e 3x^2 + 4x + 5 -> 5,4,3  and evaluation point
+// Output: P(x), P'(x)
+fn polynomial_eval(coef: Vec<f64>, eval: f64) -> (f64,f64){
+     let x_point = Dual::new(eval,1f64);
+     let mut var_pow = Dual::new(eval,1f64);
+     let mut start = Dual::new(coef[0],0f64);
+     
+     for i in 1..coef.len(){
+         start.mut_addition(Dual::new(coef[i],0f64).product(var_pow.clone()));
+         var_pow.mut_product(x_point.clone());
+     }
+     start.coef()
+ }
