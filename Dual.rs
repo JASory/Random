@@ -52,7 +52,7 @@
  }
 
  fn division(&self, other: Self) -> Self{
-
+     Self::new(self.a/other.a, (self.b*other.a - other.b*self.a)/other.a*other.a)
  }
 
  fn sqrt(&self) -> Self{
@@ -60,36 +60,45 @@
  }
 
  fn nth_rt(&self, n: u32) -> Self{
-    
+    let pow = (n as f64).recip();
+    Self::new(self.a.powf(pow), self.b*pow*self.a.powf(pow-1f64))
  }
 
  fn exp(&self) -> Self{
-
+    let e = 2.718281828f64;
+    Self::new(e.powf(self.a), self.b*e.powf(self.a))
  }
-
+   
+ fn ln(&self) -> Self{
+     Self::new(self.a.ln(), self.b/self.a)
+ }
+ /*
+ fn log(&self, z: f64) -> Self{
+   
+ }  
+*/
  fn cos(&self) -> Self{
-
+    Self::new(self.a.cos(),self.b*(-self.a.sin()))
  }
 
  fn sin(&self) -> Self{
- 
+     Self::new(self.a.sin(),self.b*self.a.cos())
  }
  
  fn tan(&self) -> Self{
-
+    Self::new(self.a.tan(),self.b/self.a.cos()*self.a.cos())
  }
 
  fn cosh(&self) -> Self{
-
+    Self::new(self.a.cosh(),self.b*self.a.sinh())
  }
  
  fn sinh(&self) -> Self{
-  
+      Self::new(self.a.sinh(),self.b*self.a.cosh())
  }
-
+/*
  fn tanh(&self) -> Self{
-
+    Self::new(,)
  }
-
-
+*/
  }
