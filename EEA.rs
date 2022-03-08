@@ -30,5 +30,34 @@ fn eea(p: i64 , q: i64)->(i64,i64,i64){
 
 
 fn mod_pow(x: u64,p: u64 n: u64) -> u64{
-   let modpro()
+   let modpro |x: u64, y: u64, n: u64, n_prime: u64| {
+      let t = ((x as u128 *y as u128) as u64;
+      let m = (t as u128* n_prime as u128) as u64;
+      let u = ((((x as u128*y as u128)>>64) + ((m as u128 + n as u128)>>64))>>64) as u64;
+         if u >= n {return u-n}
+         return u
+   }
+   let mut pow = p; 
+   let (_ ,r_inv, n_prime) = eea(x,n);
+   let mut x_mod = ((x as u128<<64)%(n as u128)) as u64;
+   let mut p_mod = ((1u128<<64)%(n as u128)) as u64;
+      
+   while pow > 1 {
+  
+   if pow%2 == 0 {
+      base =  modpro(x_mod,x_mod,n, n_prime);
+      pow>>=1;
+   }
+  
+  else{
+  
+   p_mod = modpro(x_mod,p_mod,n,n_prime);
+   base =  modpro(x_mod,x_mod,n, n_prime);  
+   pow=(pow-1)>>1;  
+   
+ }
+      
 }
+ let fin = modpro(p_mod,x_mod,n,n_prime);
+     modpro(fin,1,n,n_prime)
+   }      
