@@ -2,7 +2,7 @@
    Extended Euclidean Algorithm and Applications
 */
 
-fn euclid_gcd(p: i64 , q: i64)->(i64,i64,i64){
+fn eea(p: i64 , q: i64)->(i64,i64,i64){
          let mut gcd : i64 =p; 
          let mut new_r : i64 =q;
          let mut bezout_1 : i64 =1;
@@ -26,4 +26,9 @@ fn euclid_gcd(p: i64 , q: i64)->(i64,i64,i64){
     
     }
     (gcd,bezout_1,bezout_2)
+}
+
+
+fn mod_pow(x: u64,p: u64 n: u64) -> u64{
+   let modpro()
 }
