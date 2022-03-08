@@ -2,6 +2,38 @@
  Precursor functions 
 */
 
+fn jacobi(x: u64 y: u64) -> i8 {
+
+    let mut n = x;
+    let mut p = y;
+    let mut t = 1i8;
+    n %= p;
+    
+    while n != 0 {
+     let zeros = n.trailing_zeros(); 
+     n>>=zeros;
+     
+     if (p % 8 == 3 || p % 8 == 5) && (zeros%2 == 1) { 
+            t = -t
+     }
+    
+        std::mem::swap(&mut n, &mut p);
+        if n % 4 == 3 && p % 4 == 3 {
+            t = -t;
+        }
+        n %= p;
+    }
+    
+    if p == 1 {
+        t
+    } 
+    
+    else {
+        0
+    }
+
+}
+
 // modular exponentiation
 fn modpow(x : u64,mut  pow: u64, modulus: u64)-> u64{ 
 
@@ -86,6 +118,16 @@ fn mul_sub_mod(x: u64, y: u64,z: u64,  n: u64)->u64{
     }
     return false        // otherwise it fails
  }
+
+ 
+
+fn euler_jacobi(p: u64, base: u64) -> bool{
+   let mut value = jacobi(base,p);
+   if value == -1i8 {
+     value = p-1
+   }
+   mod_pow(base,(p-1)>>1,p) == value
+}
  
  fn miller_rabin(p: u64)->bool{// probabilistic miller rabin (1/4)^5 , skips 2 and 3
     for _ in 0..5{
