@@ -2,7 +2,7 @@
  Precursor functions 
 */
 
-fn jacobi(x: u64 y: u64) -> i8 {
+fn jacobi(x: u64, y: u64) -> i8 {
 
     let mut n = x;
     let mut p = y;
@@ -119,14 +119,23 @@ fn mul_sub_mod(x: u64, y: u64,z: u64,  n: u64)->u64{
     return false        // otherwise it fails
  }
 
+ /*
+  Input : A number to be tested for primality p, A base coprime to p
+  Output : A prime or Euler-Jacobi prime
  
+ */
 
 fn euler_jacobi(p: u64, base: u64) -> bool{
+   let mut jac_val = 0u64;
    let mut value = jacobi(base,p);
    if value == -1i8 {
-     value = p-1
+      jac_val = p-1
    }
-   mod_pow(base,(p-1)>>1,p) == value
+   else {
+       jac_val = value as u64
+   }
+   //jac_val = p-1
+   modpow(base,(p-1)>>1,p) == jac_val
 }
  
  fn miller_rabin(p: u64)->bool{// probabilistic miller rabin (1/4)^5 , skips 2 and 3
