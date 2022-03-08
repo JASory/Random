@@ -121,7 +121,7 @@ fn mul_sub_mod(x: u64, y: u64,z: u64,  n: u64)->u64{
 
  /*
   Input : A number to be tested for primality p, A base coprime to p
-  Output : A prime or Euler-Jacobi prime
+  Output : A prime or Euler-Jacobi pseudoprime
  
  */
 
