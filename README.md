@@ -8,6 +8,7 @@ Repository of Random, Useful, or Novel Functions
 - Games - Monty Hall, and Fares Problem simulation
 - Minesweeper - Novel approach to the minesweeper game, highly applicable to other grid-based problems
 - Mpz10 - Highly naive Arbitrary-precision arithmetic using Radix-10^19
+- RCPrime - Research project on fast deterministic primality test in the interval [0;2^64] 
 - RNG Affine generator produces poor entropy, RDRAND call function 
 - Primality - Some efficient primality tests, including trial division, Miller-Rabin and Lucas-Lehmer
 - SIRP - [Sequential Interval Residue Product](https://rust-cas.org/fun/misc/sirp.html)
