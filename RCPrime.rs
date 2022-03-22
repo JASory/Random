@@ -8,11 +8,11 @@
    deterministic tests. Currently the latest variant of hashtable is due to Bradley Berg, and utilizes 32696 bytes
    of memory, and performs 2-primality checks for integers in the interval [2^32;2^49] and 3 for values [2^49;2^64]. 
    
-   Jsprime  looks to match or exceed this performance in the worst-case. (It already far exceeds the plain 
+   RCPrime  looks to match or exceed this performance in the worst-case. (It already far exceeds the plain 
    hashtables in the average case due to fast trial division). Some improvements over known tests is the reduction of the threshold 
    for 2 sprp tests from 2^32 to 2^35.
   
-  While this implementation may be the fastest currently known (especially in the interval 2^32;2^35), it makes no claim as 
+  While this implementation may be the fastest test currently known (especially in the interval 2^32;2^35), it makes no claim as 
   such due to the fact that further optimizations are trivial, and it is likely that others have written faster
    variants privately. 
  
