@@ -17,7 +17,7 @@
    variants privately. 
  
   
-  Some benchmarks on i5-10400 processor, single thread, all numbers between the intervals are checked
+  Some benchmarks on i5-10400 processor, single thread, all numbers between the intervals are checked once
   
   2^32-2^33   274.888243128s
   2^33-2^34   740.397134887s
