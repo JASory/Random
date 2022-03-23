@@ -11,6 +11,7 @@ Repository of Random, Useful, or Novel Functions
 - RCPrime - Research project on fast deterministic primality test in the interval [0;2^64] 
 - RNG Affine generator produces poor entropy, RDRAND call function 
 - Primality - Some efficient primality tests, including trial division, Miller-Rabin and Lucas-Lehmer
+- SI - *Systemé International* conversions from various other units
 - SIRP - [Sequential Interval Residue Product](https://rust-cas.org/fun/misc/sirp.html)
 - Sqrt - Symbolic computation of integer sqrt
 <!---
