@@ -117,7 +117,7 @@
   }
                                   // Celsius to Kelvin    Inverse is a + c_klv(0f64)
   pub fn  c_klv(a: f64) -> f64{
-           a-27
+           a-273.15
   }
                                    //Foot-pounds to Joules
   pub fn  fts_jl(a: f64) -> f64{
