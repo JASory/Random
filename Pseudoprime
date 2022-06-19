@@ -2,7 +2,7 @@ An array of the sum of numbers that pass trial division by the first 64 primes a
 and a base-2 fermat test. Each element is the count of numbers in an interval of 2^32
 
 
--------- Probable Prime Count ------------
+--------------------------- Probable Prime Count -----------------------------
 
 96823434, 96816880, 96828014, 96812535, 96827544, 96822439, 96815310, 96811716, // 18446744073709551616
 96815213, 96818558, 96824280, 96819074, 96815428, 96809384, 96811603, 96813998, // 18446744108069289984
